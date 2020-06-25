@@ -1,4 +1,4 @@
-import React ,{Component} from 'react';
+import React , {Component} from 'react';
 // fazer o nosso componente estucar os reducers e actions
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
@@ -12,7 +12,9 @@ class TodoList extends Component{
     }
 
     addNewTodo =()=>{
+       this.props.addTodo(this.state.newTodoText);
 
+       this.setState({newTodoText: ''})
     }
 
     state = {
@@ -25,23 +27,34 @@ class TodoList extends Component{
 
          <div>
             <ul>
-                <li>
-                    Item do Todo
+                <li>{/* Atualizar a lista dos Todos*/}
+                    {this.props.todos.map(todo=>(
+                        <li key={todo.id} >{/* Todo interação no React Precisa de uma key */}
+                            {todo.text}
+
+
+                            </li>
+                    ))}
                 </li>
             </ul>
 
-            <input type ="text" value ={this.state.newTodoText} onChange={this.setState({newTodoText: e.target.value})} />
+            <input type ="text" value ={this.state.newTodoText} onChange={(e)=>this.setState({newTodoText: e.target.value})} />
             <button onClick={this.addNewTodo}>Novo todo</button>
             </div>
         )
          
     }
 }
+// fazer uma nova atualização do Todo na interface
+
+const mapStateToProps = state => ({
+    todos: state.todos 
+})
 
 
 // fazer as actions virar uma propriedade 
 const mapDispatchToProps = dispatch => bindActionCreators(todosActions,dispatch)
 
-export default  connect(null , mapDispatchToProps)(TodoList);
+export default  connect(mapStateToProps , mapDispatchToProps)(TodoList);
 
 
