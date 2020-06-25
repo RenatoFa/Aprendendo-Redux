@@ -27,7 +27,7 @@ class TodoList extends Component{
 
          <div>
             <ul>
-                <li>{/* Atualizar a lista dos Todos*/}
+                {/* Atualizar a lista dos Todos*/}
                     {this.props.todos.map(todo=>(
                         <li key={todo.id} >{/* Todo interação no React Precisa de uma key */}
                             {todo.text}
@@ -35,7 +35,7 @@ class TodoList extends Component{
 
                             </li>
                     ))}
-                </li>
+                
             </ul>
 
             <input type ="text" value ={this.state.newTodoText} onChange={(e)=>this.setState({newTodoText: e.target.value})} />
