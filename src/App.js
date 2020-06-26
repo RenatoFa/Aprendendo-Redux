@@ -4,13 +4,18 @@ import {Provider} from 'react-redux';
 import store from '../src/store';
 
 import TodoList from './TodoList';
+import Counter from './Counter';
 
 
 function App() {
   return (
     <Provider store={store}>
-       <TodoList/>
+      <div>
+      <TodoList/>
+       <Counter/>
+      </div>
     </Provider>
+
   );
 }
 
